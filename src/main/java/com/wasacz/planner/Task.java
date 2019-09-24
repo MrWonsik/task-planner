@@ -4,26 +4,27 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Service
+@Entity
 public class Task {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private String nameOfTask;
+    private String description;
     private boolean isMade = false;
 
-    public Task(String nameOfTask) {
-        this.nameOfTask = nameOfTask;
+    public Task(String description) {
+        this.description = description;
     }
 }
