@@ -5,7 +5,7 @@ Every task will save in database.
 
 **Technologies**: *Spring*, *Hibernate*, *Lombok*, *Junit*
 
-##Application functionality:
+## Application functionality:
 - adding new task
 - showing all tasks
 
