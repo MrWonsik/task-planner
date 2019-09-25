@@ -48,14 +48,23 @@ public class TaskController {
             @PathVariable long id) {
         Optional<Task> taskToEdit = taskRepository.findById(id);
 
-        if (newDescriptionOfTask.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
         if (taskToEdit.isPresent()) {
             taskToEdit.get().setDescription(newDescriptionOfTask);
             taskRepository.save(taskToEdit.get());
             return ResponseEntity.ok(taskToEdit.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/completeTask/{id}")
+    public ResponseEntity markTaskAsComplete(
+            @PathVariable long id) {
+        Optional<Task> taskToMarkAsComplete = taskRepository.findById(id);
+        if (taskToMarkAsComplete.isPresent()) {
+            taskToMarkAsComplete.get().setMade(true);
+            taskRepository.save(taskToMarkAsComplete.get());
+            return ResponseEntity.ok(taskToMarkAsComplete.get());
         } else {
             return ResponseEntity.notFound().build();
         }
