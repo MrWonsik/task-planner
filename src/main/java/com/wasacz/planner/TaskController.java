@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("planner")
 public class TaskController {
 
     @Autowired
@@ -17,28 +17,46 @@ public class TaskController {
     @PostMapping("/addTask")
     public ResponseEntity addTask(
             @RequestBody String descriptionOfTask
-    ){
+    ) {
         Task newTask = new Task(descriptionOfTask);
         taskRepository.save(newTask);
         return ResponseEntity.ok(newTask);
     }
 
     @GetMapping("/getAllTasks")
-    public ResponseEntity getAllTasks(){
+    public ResponseEntity getAllTasks() {
         List<Task> allTasks = taskRepository.findAll();
         return (allTasks.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(allTasks);
     }
 
 
     @DeleteMapping("/deleteTask/{id}")
-    public ResponseEntity deleteTask(@PathVariable long id){
+    public ResponseEntity deleteTask(@PathVariable long id) {
         Optional<Task> toDelete = taskRepository.findById(id);
 
-        if(toDelete.isPresent()){
+        if (toDelete.isPresent()) {
             taskRepository.delete(toDelete.get());
             return ResponseEntity.ok(toDelete.get());
-        } else
-        {
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/editTask/{id}")
+    public ResponseEntity editTask(
+            @RequestBody String newDescriptionOfTask,
+            @PathVariable long id) {
+        Optional<Task> taskToEdit = taskRepository.findById(id);
+
+        if (newDescriptionOfTask.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        if (taskToEdit.isPresent()) {
+            taskToEdit.get().setDescription(newDescriptionOfTask);
+            taskRepository.save(taskToEdit.get());
+            return ResponseEntity.ok(taskToEdit.get());
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
