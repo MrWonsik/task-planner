@@ -23,12 +23,12 @@ public class Task {
     private long id;
 
     private String description;
-    private LocalDateTime DateOfAdd;
+    private LocalDateTime dateOfAdd;
     private boolean isMade = false;
 
 
     public Task(String description) {
         this.description = description;
-        this.DateOfAdd = LocalDateTime.now();
+        this.dateOfAdd = LocalDateTime.now();
     }
 }

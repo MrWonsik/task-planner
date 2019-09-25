@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class TaskExceptionHandler extends Exception{
+public class TaskExceptionHandler extends Exception {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    ResponseEntity emptyRequestBodyHandler(){
+    ResponseEntity emptyRequestBodyHandler() {
         return ResponseEntity.noContent().build();
     }
 
