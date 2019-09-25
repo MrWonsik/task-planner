@@ -10,8 +10,9 @@ Every task will save in database.
 - deleting task
 - showing all tasks
 - editing tasks
+- mark a task as complete
 
 ### TODO:
 
-- mark a task as complete
+
 - add frontend in REACT
