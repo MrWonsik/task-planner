@@ -2,14 +2,13 @@ package com.wasacz.planner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping
 public class TaskController {
 
     @Autowired
@@ -26,7 +25,21 @@ public class TaskController {
 
     @GetMapping("/getAllTasks")
     public ResponseEntity getAllTasks(){
-        List<Task> all = taskRepository.findAll();
-        return ResponseEntity.ok(all);
+        List<Task> allTasks = taskRepository.findAll();
+        return (allTasks.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(allTasks);
+    }
+
+
+    @DeleteMapping("/deleteTask/{id}")
+    public ResponseEntity deleteTask(@PathVariable long id){
+        Optional<Task> toDelete = taskRepository.findById(id);
+
+        if(toDelete.isPresent()){
+            taskRepository.delete(toDelete.get());
+            return ResponseEntity.ok(toDelete.get());
+        } else
+        {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

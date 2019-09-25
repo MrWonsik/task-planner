@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,9 +23,12 @@ public class Task {
     private long id;
 
     private String description;
+    private LocalDate DateOfAdd;
     private boolean isMade = false;
+
 
     public Task(String description) {
         this.description = description;
+        this.DateOfAdd = LocalDate.now();
     }
 }

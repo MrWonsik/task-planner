@@ -5,10 +5,12 @@ Every task will save in database.
 
 **Technologies**: *Spring*, *Hibernate*, *Lombok*, *Junit*
 
-### TODO:
-
+##Application functionality:
 - adding new task
+- showing all tasks
+
+
+### TODO:
 - deleting task
 - mark a task as complete
-- showing all tasks
 - add frontend in REACT
