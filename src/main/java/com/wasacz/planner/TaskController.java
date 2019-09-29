@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://192.168.0.127:3000")
 @RestController
 @RequestMapping("planner")
 public class TaskController {
