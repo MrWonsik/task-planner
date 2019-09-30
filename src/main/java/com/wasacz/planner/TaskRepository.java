@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    List<Task> findByDescription(String description);
+    List<Task> findTasksByIsMade(Boolean isMade);
+
 }

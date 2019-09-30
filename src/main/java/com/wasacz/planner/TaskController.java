@@ -30,6 +30,18 @@ public class TaskController {
         return (allTasks.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(allTasks);
     }
 
+    @GetMapping("/getMadeTasks")
+    public ResponseEntity getMadeTasks() {
+        List<Task> madeTasks = taskRepository.findTasksByIsMade(true);
+        return (madeTasks.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(madeTasks);
+    }
+
+    @GetMapping("/getTasksToDo")
+    public ResponseEntity getTasksToDo() {
+        List<Task> tasksToDo = taskRepository.findTasksByIsMade(false);
+        return (tasksToDo.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(tasksToDo);
+    }
+
 
     @DeleteMapping("/deleteTask/{id}")
     public ResponseEntity deleteTask(@PathVariable long id) {
@@ -66,6 +78,19 @@ public class TaskController {
             taskToMarkAsComplete.get().setMade(true);
             taskRepository.save(taskToMarkAsComplete.get());
             return ResponseEntity.ok(taskToMarkAsComplete.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/undoCompleteTask/{id}")
+    public ResponseEntity undoCompleteTask(
+            @PathVariable long id) {
+        Optional<Task> taskMarkAsComplete= taskRepository.findById(id);
+        if (taskMarkAsComplete.isPresent()) {
+            taskMarkAsComplete.get().setMade(false);
+            taskRepository.save(taskMarkAsComplete.get());
+            return ResponseEntity.ok(taskMarkAsComplete.get());
         } else {
             return ResponseEntity.notFound().build();
         }
