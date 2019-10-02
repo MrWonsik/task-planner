@@ -25,6 +25,7 @@ public class Task {
     private String description;
     private LocalDateTime dateOfAdd;
     private boolean isMade = false;
+    private LocalDateTime dateOfComplete;
 
 
     public Task(String description) {

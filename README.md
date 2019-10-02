@@ -8,13 +8,13 @@ Every task will save in database.
 ## Application functionality:
 - adding new task
 - deleting task
-- showing all tasks
-- showing tasks todo
-- showing completed tasks
+- showing all tasks (sorting by add date)
+- showing tasks todo (sorting by add date)
+- showing completed tasks (sorting by add date)
 - editing tasks
 - mark a task as complete
 
 ### TODO:
 
-
+- adding date of complete task,
 - add frontend in REACT (in progress: [REACT frontend](https://github.com/MrWonsik/task_planner_frontend_react))

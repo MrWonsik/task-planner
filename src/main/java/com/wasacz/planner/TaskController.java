@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +77,7 @@ public class TaskController {
         Optional<Task> taskToMarkAsComplete = taskRepository.findById(id);
         if (taskToMarkAsComplete.isPresent()) {
             taskToMarkAsComplete.get().setMade(true);
+            taskToMarkAsComplete.get().setDateOfComplete(LocalDateTime.now());
             taskRepository.save(taskToMarkAsComplete.get());
             return ResponseEntity.ok(taskToMarkAsComplete.get());
         } else {
@@ -89,6 +91,7 @@ public class TaskController {
         Optional<Task> taskMarkAsComplete= taskRepository.findById(id);
         if (taskMarkAsComplete.isPresent()) {
             taskMarkAsComplete.get().setMade(false);
+            taskMarkAsComplete.get().setDateOfComplete(null);
             taskRepository.save(taskMarkAsComplete.get());
             return ResponseEntity.ok(taskMarkAsComplete.get());
         } else {
