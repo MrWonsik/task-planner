@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    List<Task> findTasksByIsMade(Boolean isMade);
+    List<Task> findTasksByIsMadeOrderByDateOfAddDesc(Boolean isMade);
 
 }

@@ -32,13 +32,13 @@ public class TaskController {
 
     @GetMapping("/getMadeTasks")
     public ResponseEntity getMadeTasks() {
-        List<Task> madeTasks = taskRepository.findTasksByIsMade(true);
+        List<Task> madeTasks = taskRepository.findTasksByIsMadeOrderByDateOfAddDesc(true);
         return ResponseEntity.ok(madeTasks);
     }
 
     @GetMapping("/getTasksToDo")
     public ResponseEntity getTasksToDo() {
-        List<Task> tasksToDo = taskRepository.findTasksByIsMade(false);
+        List<Task> tasksToDo = taskRepository.findTasksByIsMadeOrderByDateOfAddDesc(false);
         return ResponseEntity.ok(tasksToDo);
     }
 
