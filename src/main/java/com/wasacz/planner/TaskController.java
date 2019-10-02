@@ -27,19 +27,19 @@ public class TaskController {
     @GetMapping("/getAllTasks")
     public ResponseEntity getAllTasks() {
         List<Task> allTasks = taskRepository.findAll();
-        return (allTasks.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(allTasks);
+        return ResponseEntity.ok(allTasks);
     }
 
     @GetMapping("/getMadeTasks")
     public ResponseEntity getMadeTasks() {
         List<Task> madeTasks = taskRepository.findTasksByIsMade(true);
-        return (madeTasks.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(madeTasks);
+        return ResponseEntity.ok(madeTasks);
     }
 
     @GetMapping("/getTasksToDo")
     public ResponseEntity getTasksToDo() {
         List<Task> tasksToDo = taskRepository.findTasksByIsMade(false);
-        return (tasksToDo.isEmpty()) ? ResponseEntity.notFound().build() : ResponseEntity.ok(tasksToDo);
+        return ResponseEntity.ok(tasksToDo);
     }
 
 
