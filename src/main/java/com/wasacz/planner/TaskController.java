@@ -8,9 +8,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://192.168.0.127:3000")
+@CrossOrigin(origins = "http://192.168.0.127:7777")
 @RestController
-@RequestMapping("planner")
 public class TaskController {
 
     @Autowired
