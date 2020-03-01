@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://192.168.0.127:7777")
+@CrossOrigin(origins = {"http://192.168.0.127:7777", "http://achilles:7777"})
 @RestController
 public class TaskController {
 
@@ -87,7 +87,7 @@ public class TaskController {
     @PutMapping("/undoCompleteTask/{id}")
     public ResponseEntity undoCompleteTask(
             @PathVariable long id) {
-        Optional<Task> taskMarkAsComplete= taskRepository.findById(id);
+        Optional<Task> taskMarkAsComplete = taskRepository.findById(id);
         if (taskMarkAsComplete.isPresent()) {
             taskMarkAsComplete.get().setMade(false);
             taskMarkAsComplete.get().setDateOfComplete(null);
