@@ -17,4 +17,4 @@ Every task will save in database.
 ### TODO:
 
 - adding date of complete task,
-- add frontend in REACT (in progress: [REACT frontend](https://github.com/MrWonsik/task_planner_frontend_react))
+- add frontend in REACT ([REACT frontend](https://github.com/MrWonsik/task_planner_frontend_react))
